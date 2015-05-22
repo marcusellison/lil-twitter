@@ -13,6 +13,9 @@ class Tweet: NSObject {
     var text: String?
     var createdAtString: String?
     var createdAt: NSDate?
+    var imageURL: NSURL?
+    var retweetedBy: String?
+    var retweeted: Bool?
     
     init(dictionary: NSDictionary) {
         user = User(dictionary: (dictionary["user"] as! NSDictionary))
@@ -27,15 +30,25 @@ class Tweet: NSObject {
         // date format must match exactly
         formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
         
+//        formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        
         createdAt = formatter.dateFromString(createdAtString!)
+        
+        var imageURLString = user?.profileImageURL
+        if imageURLString != nil {
+            imageURL = NSURL(string: imageURLString!)!
+        } else {
+            imageURL = nil
+        }
     }
     
-    // convenience method that parses and array of tweets
+    // convenience method that parses an array of tweets
     class func tweetsWithArray( array: [NSDictionary]) -> [Tweet] {
         var tweets = [Tweet]()
         
-        for dictionary in array {
+        for (dictionary) in array{
             tweets.append(Tweet(dictionary: dictionary))
+            
         }
         
         return tweets

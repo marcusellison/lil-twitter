@@ -29,7 +29,7 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
         
         // doesn't need the shared instance because this is the shared instance
         GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-            //println("home timeline \(response)")
+//            println("home timeline \(response)")
             var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
             completion(tweets: tweets, error: nil)
             
