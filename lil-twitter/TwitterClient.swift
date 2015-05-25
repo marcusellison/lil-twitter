@@ -54,23 +54,59 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
 //        }
     }
     
-    func postTweet() -> () {
+    func replyTweet(tweetText: String!, tweetID: String!, completion: (tweet: Tweet?, error: NSError?) -> () ) {
         
-        var status = "test tweet"
+        var params: NSDictionary?
         
-        var dictionary = [String:String]()
+        params = ["status": tweetText, "in_reply_to_status_id" : tweetID]
         
-        dictionary["status"] = status
-        
-        println(dictionary["status"])
-        
-//        TwitterClient.sharedInstance.POST("https://api.twitter.com/1.1/statuses/update.json", parameters: dictionary, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-//            println("something posted?")
-//        }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-//            println("error")
-//        }
+        POST("1.1/statuses/update.json", parameters: params!, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            var tweet = Tweet(dictionary: response as! NSDictionary)
+            println("Tweet replied to! \(tweet.tweetID!)")
+            completion(tweet: tweet, error: nil)
+            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Failed to reply!")
+                println(error)
+                completion(tweet: nil, error: error)
+        }
         
     }
+    
+    func favorite(tweetID: String!, completion: (tweet: Tweet?, error: NSError?) -> () ) {
+        
+        POST("1.1/favorites/create.json", parameters: ["id":tweetID], success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            println("Tweet Favorited! :-) Id: \(tweetID)")
+            var tweet = Tweet(dictionary: response as! NSDictionary)
+            completion(tweet: tweet, error: nil)
+            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Favoriting tweet failed :-( \(tweetID)")
+                println(error)
+                completion(tweet: nil, error: error)
+        }
+        
+    }
+    
+    func retweet(tweet: Tweet, completion: (tweet: Tweet?, error: NSError?) -> () ) {
+        
+        var tweetID = tweet.tweetIDString!
+        var url = "1.1/statuses/retweet/" + tweetID + ".json"
+        
+        POST(url, parameters: ["trim_user" : false], success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            
+            println("Tweet Retweeted! \(tweetID)")
+            var tweet = Tweet(dictionary: response as! NSDictionary)
+            completion(tweet: tweet, error: nil)
+            
+        }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+            
+            println("Retweet unsuccessful with tweet Id: \(tweetID)")
+            println(error)
+            completion(tweet: nil, error: error)
+            
+        }
+    }
+    
+
     
     func loginWithCompletion(completion: (user: User?, error: NSError?) -> () ) {
         loginCompletion = completion

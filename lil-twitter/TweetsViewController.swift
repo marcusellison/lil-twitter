@@ -44,7 +44,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 //     In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier != "newTweet" {
+        if segue.identifier == "tweetDetail" {
             let cell = sender as! UITableViewCell
             
             let indexPath = tableView.indexPathForCell(cell)!
@@ -113,5 +113,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             self.tableView.reloadData()
         })
     }
+    
+//    func composeViewController(composeViewController: ComposeViewController, didPostNewTweet tweet: Tweet) {
+//        self.tweets = [tweet] + self.tweets!
+//        self.tableView.reloadData()
+//    }
 
 }

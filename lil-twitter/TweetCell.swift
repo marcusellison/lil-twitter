@@ -17,10 +17,10 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var createdAtLabel: UILabel!
     @IBOutlet weak var tweetDescriptionLabel: UILabel!
     @IBOutlet weak var screennameLabel: UILabel!
-    @IBOutlet weak var replyImageView: UIImageView!
-    @IBOutlet weak var favoriteImageView: UIImageView!
-    @IBOutlet weak var bottomRetweetLabel: UIImageView!
     
+    @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,9 +29,6 @@ class TweetCell: UITableViewCell {
         thumbImageView.clipsToBounds = true
         
         retweetImageView.image = UIImage(named: "retweet")
-        replyImageView.image = UIImage(named: "reply")
-        favoriteImageView.image = UIImage(named: "favorite")
-        bottomRetweetLabel.image = UIImage(named: "retweet")
         
         //initially hide retweet view
         retweetImageView.hidden = true
@@ -64,7 +61,50 @@ class TweetCell: UITableViewCell {
                 retweetUsernameLabel.hidden = false
             }
             
+            if tweet.favorited! {
+                favoriteButton.selected = true
+            } else {
+                favoriteButton.selected = false
+            }
+            
+            if tweet.retweeted! {
+                retweetButton.selected = true
+            } else {
+                retweetButton.selected = false
+            }
+            
         }
     }
+    
+    @IBAction func onFavorite(sender: AnyObject) {
+        
+        TwitterClient.sharedInstance.favorite(tweet.tweetIDString!, completion: { (tweet, error) -> () in
+            if error == nil {
+                println("Tweet Favorited!")
+                self.favoriteButton.selected = true
+                //                (self.delegate?.budgieDetailsActionsCell!(self, didChangeFavoriteStatus:  !(self.tweet.isFavorited!)))
+            } else {
+                println(("favoriting error"))
+            }
+        })
+    }
+
+    @IBAction func onRetweet(sender: AnyObject) {
+        TwitterClient.sharedInstance.retweet(tweet, completion: { (tweet, error) -> () in
+            if error == nil {
+                println("Successful retweet!")
+                self.retweetButton.selected = true
+                //                (self.delegate?.budgieDetailsActionsCell!(self, didChangeReTweetedStatus:  !(self.tweet.isRetweeted!)))
+            } else {
+                println(("Error retweeting!"))
+            }
+        })
+    }
+    
+    @IBAction func onReply(sender: AnyObject) {
+//        performSegueWithIdentifier("replyTweet", sender: sender)
+        
+    }
+    
 
 }

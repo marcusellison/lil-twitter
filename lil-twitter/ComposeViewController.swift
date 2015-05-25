@@ -8,12 +8,18 @@
 
 import UIKit
 
+//@objc protocol ComposeViewControllerDelegate {
+//    optional func composeViewController(composeViewController: ComposeViewController, didPostNewTweet tweet: Tweet)
+//}
+
 class ComposeViewController: UIViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screennameLabel: UILabel!
     @IBOutlet weak var thumbLabel: UIImageView!
     @IBOutlet weak var tweetField: UITextField!
+    
+    weak var delegate: ComposeViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +29,8 @@ class ComposeViewController: UIViewController {
         nameLabel.text = User.currentUser?.name
         screennameLabel.text = User.currentUser?.screenname
         thumbLabel.setImageWithURL(imageURL)
+        
+        self.navigationItem.title = "140"
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,11 +44,9 @@ class ComposeViewController: UIViewController {
         
         var tweetText = tweetField.text
         
-        
-        
         TwitterClient.sharedInstance.postTweet(tweetField.text) { (tweet, error) -> () in
             //used if segue transition is modal: self.dismissViewControllerAnimated(true, completion: nil)
-            
+//            self.delegate?.composeViewController!(self, didPostNewTweet: tweet!)
             //used because transition is show
             self.navigationController?.popViewControllerAnimated(true)
         }
@@ -55,5 +61,12 @@ class ComposeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    
+    // change text count
+//    @IBAction func onCharacterChange(sender: AnyObject) {
+//        self.navigationItem.title = "\(140 - count(tweetField.text))"
+//    }
     
 }

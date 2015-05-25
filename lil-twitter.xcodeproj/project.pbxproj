@@ -21,6 +21,7 @@
 		3DBA2F9A1B0A775400606B1B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA2F991B0A775400606B1B /* Images.xcassets */; };
 		3DBA2F9D1B0A775400606B1B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA2F9B1B0A775400606B1B /* LaunchScreen.xib */; };
 		3DBA2FA91B0A775400606B1B /* lil_twitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA2FA81B0A775400606B1B /* lil_twitterTests.swift */; };
+		3DD2B5E01B12CF0900CA2210 /* ReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2B5DF1B12CF0900CA2210 /* ReplyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		3DBA2FA21B0A775400606B1B /* lil-twitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "lil-twitterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DBA2FA71B0A775400606B1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DBA2FA81B0A775400606B1B /* lil_twitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lil_twitterTests.swift; sourceTree = "<group>"; };
+		3DD2B5DF1B12CF0900CA2210 /* ReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
 		67F3F5179D2215EB0644E4D4 /* Pods-lil-twitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lil-twitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-lil-twitter/Pods-lil-twitter.release.xcconfig"; sourceTree = "<group>"; };
 		C1F2B49FBB07BDDA6CD05250 /* libPods-lil-twitter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-lil-twitter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -81,6 +83,7 @@
 			children = (
 				3D6C6CDC1B0C2D6800EFE42C /* TweetsViewController.swift */,
 				3DBA2F941B0A775400606B1B /* ViewController.swift */,
+				3DD2B5DF1B12CF0900CA2210 /* ReplyViewController.swift */,
 				3D4388951B0FE9FB00256981 /* TweetDetailViewController.swift */,
 				3D4388931B0FBCBB00256981 /* ComposeViewController.swift */,
 			);
@@ -327,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D6C6CD91B0B9DA400EFE42C /* User.swift in Sources */,
+				3DD2B5E01B12CF0900CA2210 /* ReplyViewController.swift in Sources */,
 				3D3AF9751B0E8B8900638863 /* TweetCell.swift in Sources */,
 				3D4388961B0FE9FB00256981 /* TweetDetailViewController.swift in Sources */,
 				3D6C6CDB1B0B9DB100EFE42C /* Tweet.swift in Sources */,
