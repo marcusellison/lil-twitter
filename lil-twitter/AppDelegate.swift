@@ -22,7 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController()
         window?.rootViewController = navigationController
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
+        
+        println("what's happening?")
+        
+        
         
         if User.currentUser != nil {
             // Go to the logged in screen
@@ -34,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             println("change to login view")
         }
+        
+        var vc = storyBoard.instantiateInitialViewController() as! UIViewController
+        window?.rootViewController = vc
         
         return true
     }

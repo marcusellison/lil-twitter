@@ -19,7 +19,7 @@ class ComposeViewController: UIViewController {
     @IBOutlet weak var thumbLabel: UIImageView!
     @IBOutlet weak var tweetField: UITextField!
     
-    weak var delegate: ComposeViewControllerDelegate?
+//    weak var delegate: ComposeViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,11 +62,9 @@ class ComposeViewController: UIViewController {
     }
     */
     
-    
-    
     // change text count
-//    @IBAction func onCharacterChange(sender: AnyObject) {
-//        self.navigationItem.title = "\(140 - count(tweetField.text))"
-//    }
+    @IBAction func onCharacterChange(sender: AnyObject) {
+        self.navigationItem.title = "\(140 - count(tweetField.text))"
+    }
     
 }

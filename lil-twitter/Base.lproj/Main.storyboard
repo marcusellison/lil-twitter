@@ -608,7 +608,6 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="onCharacterChange:" destination="aJ8-pE-3HN" eventType="editingChanged" id="96F-sR-Hl5"/>
-                                    <action selector="onTextEditingChange:" destination="aJ8-pE-3HN" eventType="editingDidEnd" id="KtQ-Lw-YhY"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -672,6 +671,6 @@
         <image name="retweet_on" width="19" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aNr-Vw-HkH"/>
+        <segue reference="465-5Z-AdU"/>
     </inferredMetricsTieBreakers>
 </document>
