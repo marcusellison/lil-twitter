@@ -35,10 +35,5 @@ Installation
 - Retrieve the Yelp API tokens from http://developer.yelp.com
 - Create a folder called Config in the main folder (the one that contains the Podfile)
 
-- Inside YelpLightConfig.xcconfig, change the following strings:
-  - yelpConsumerKey = your-consumer-token
-  - yelpConsumerSecret = your-consumer-secret
-  - yelpToken = your-token
-  - yelpTokenSecret = your-secret
 
 GIF created with LiceCap.
