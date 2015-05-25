@@ -13,10 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var storyBoard = UIStoryboard(name: "Main", bundle: nil)
+    
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let navigationController = UINavigationController()
+        window?.rootViewController = navigationController
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
         
         if User.currentUser != nil {
             // Go to the logged in screen
@@ -24,10 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             // logged in view created programmatically:
             var vc = storyBoard.instantiateViewControllerWithIdentifier("TweetsViewController") as! UIViewController
-            window?.rootViewController = vc
+            window?.rootViewController = UINavigationController(rootViewController: vc)
+            
+            println("change to login view")
         }
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
         
         return true
     }

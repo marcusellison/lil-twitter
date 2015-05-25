@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -28,15 +28,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         refreshControl.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
 
-        // Do any additional setup after loading the view.
-        TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
-            
-            // return first 20 tweets by default via twitter api
-            self.tweets = tweets!
-            
-            self.tableView.reloadData()
-
-        })
+        loadTweets()
         
     }
 
@@ -46,23 +38,40 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
 
-    /*
-    // MARK: - Navigation
+    
+//     MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//     In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier != "newTweet" {
+            let cell = sender as! UITableViewCell
+            
+            let indexPath = tableView.indexPathForCell(cell)!
+            
+            let tweetDetailViewController = segue.destinationViewController as! TweetDetailViewController
+            
+            let tweet = tweets![indexPath.row]
+            
+            tweetDetailViewController.tweet = tweet
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        } else {
+            println("new tweet segue")
+        }
+        
+        
     }
-    */
+    
     @IBAction func onLogout(sender: AnyObject) {
         User.currentUser?.logout()
         
     }
 
     @IBAction func onNewTweet(sender: AnyObject) {
+        println("trigger new tweet")
+        performSegueWithIdentifier("newTweet", sender: sender)
     }
-    
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tweets != nil {
@@ -70,8 +79,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             return 0
         }
-        
-        
     }
     
     func delay(delay:Double, closure:()->()) {
@@ -84,17 +91,27 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func onRefresh() {
+        loadTweets()
+        
         delay(2, closure: {
             self.refreshControl.endRefreshing()
         })
     }
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
         cell.tweet = tweets![indexPath.row]
         
-        
         return cell
     }
+    
+    func loadTweets() {
+        // return first 20 tweets by default via twitter api
+        TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
+            self.tweets = tweets!
+            self.tableView.reloadData()
+        })
+    }
+
 }

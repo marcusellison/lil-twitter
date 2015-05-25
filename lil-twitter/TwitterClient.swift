@@ -25,11 +25,8 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
     }
     
     func homeTimelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> () ) {
-        
-        
         // doesn't need the shared instance because this is the shared instance
         GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-//            println("home timeline \(response)")
             var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
             completion(tweets: tweets, error: nil)
             
@@ -37,6 +34,41 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
                 println("Error getting home timeline")
                 completion( tweets: nil, error: error)
         })
+    }
+    
+    func postTweet( tweetText: String!, completion: (tweet: Tweet?, error: NSError?) -> ()  ) {
+        var params: NSDictionary?
+        
+        params = ["status": tweetText]
+        
+        println("Tweet would be posted.")
+        
+//        POST("1.1/statuses/update.json", parameters: params!, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+//            var tweet = Tweet(dictionary: response as! NSDictionary)
+//            println("Success! Tweet Post Text: \(tweet.text!)")
+//            completion(tweet: tweet, error: nil)
+//            }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+//                println("post")
+//                println(error)
+//                completion(tweet: nil, error: error)
+//        }
+    }
+    
+    func postTweet() -> () {
+        
+        var status = "test tweet"
+        
+        var dictionary = [String:String]()
+        
+        dictionary["status"] = status
+        
+        println(dictionary["status"])
+        
+//        TwitterClient.sharedInstance.POST("https://api.twitter.com/1.1/statuses/update.json", parameters: dictionary, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+//            println("something posted?")
+//        }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+//            println("error")
+//        }
         
     }
     
@@ -60,6 +92,8 @@ class TwitterClient: BDBOAuth1RequestOperationManager {
                 self.loginCompletion?(user: nil, error: error)
         }
     }
+    
+
     
     func openURL(url: NSURL) {
         

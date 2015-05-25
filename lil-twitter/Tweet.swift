@@ -16,12 +16,13 @@ class Tweet: NSObject {
     var imageURL: NSURL?
     var retweetedBy: String?
     var retweeted: Bool?
+    var favorited: Bool?
+    
     
     init(dictionary: NSDictionary) {
         user = User(dictionary: (dictionary["user"] as! NSDictionary))
         text = dictionary["text"] as? String
         createdAtString = dictionary["created_at"] as? String
-        
         
         // N.B. NSDateFormatter is really expensive
         // would be better to use a lazy load or a 'static NSDateFormatter'
@@ -40,6 +41,9 @@ class Tweet: NSObject {
         } else {
             imageURL = nil
         }
+        
+        retweeted = dictionary["retweeted"] as? Bool
+        favorited = dictionary["favorited"] as? Bool
     }
     
     // convenience method that parses an array of tweets

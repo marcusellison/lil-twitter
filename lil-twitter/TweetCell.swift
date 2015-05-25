@@ -50,8 +50,6 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         
         didSet {
-            println(tweet.createdAt)
-            
             thumbImageView.setImageWithURL(tweet.imageURL)
             userNameLabel.text = tweet.user?.name
             tweetDescriptionLabel.text = tweet.text
