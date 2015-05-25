@@ -1,7 +1,7 @@
 # lil-twitter
 (ios) A Fun-Sized Twitter Client built in Swift
 
-Time spent: `<Number of hours spent>`
+Time spent: 20 hours
 
 ### Features
 
