@@ -29,11 +29,4 @@ Time spent: `<Number of hours spent>`
 
 ![Alt text](/gif/twitter-gif.gif?raw=true "twitter")
 
-Installation
-
-- Requires Xcode 6.3 beta
-- Retrieve the Yelp API tokens from http://developer.yelp.com
-- Create a folder called Config in the main folder (the one that contains the Podfile)
-
-
 GIF created with LiceCap.
