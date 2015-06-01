@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol TweetCellDelegate {
+    func userTapped(user : User)
+}
+
 class TweetCell: UITableViewCell {
 
     @IBOutlet weak var thumbImageView: UIImageView!
@@ -22,6 +26,10 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
     
+    let tapRecognizer = UITapGestureRecognizer()
+    
+    var delegate: TweetCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
        
@@ -34,7 +42,12 @@ class TweetCell: UITableViewCell {
         retweetImageView.hidden = true
         retweetUsernameLabel.hidden = true
         
-        //What this?
+        // enable user interation on the image
+        thumbImageView.userInteractionEnabled = true
+        tapRecognizer.addTarget(self, action: "userTapped")
+        thumbImageView.addGestureRecognizer(tapRecognizer)
+        
+        
 //        nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
     }
 
@@ -42,6 +55,17 @@ class TweetCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    
+    
+    func userTapped(){
+        println("Image tapped")
+        
+        if let delegate = delegate {
+            delegate.userTapped(tweet!.user!)
+        }
+        
     }
     
     var tweet: Tweet! {
@@ -72,7 +96,7 @@ class TweetCell: UITableViewCell {
             } else {
                 retweetButton.selected = false
             }
-            
+            self.delegate = self as? TweetCellDelegate
         }
     }
     
@@ -82,7 +106,6 @@ class TweetCell: UITableViewCell {
             if error == nil {
                 println("Tweet Favorited!")
                 self.favoriteButton.selected = true
-                //                (self.delegate?.budgieDetailsActionsCell!(self, didChangeFavoriteStatus:  !(self.tweet.isFavorited!)))
             } else {
                 println(("favoriting error"))
             }
@@ -94,7 +117,6 @@ class TweetCell: UITableViewCell {
             if error == nil {
                 println("Successful retweet!")
                 self.retweetButton.selected = true
-                //                (self.delegate?.budgieDetailsActionsCell!(self, didChangeReTweetedStatus:  !(self.tweet.isRetweeted!)))
             } else {
                 println(("Error retweeting!"))
             }

@@ -94,6 +94,9 @@
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XEx-yl-OXu">
                                                     <rect key="frame" x="8" y="27" width="65" height="65"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
+                                                    </accessibility>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="65" id="1E5-Xk-rOE"/>
                                                         <constraint firstAttribute="height" constant="65" id="VrM-kt-ZFQ"/>
@@ -450,6 +453,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0Gt-AY-DZ3" firstAttribute="top" secondItem="c4l-dS-3UT" secondAttribute="topMargin" constant="362" id="0sh-vD-TmS"/>
                             <constraint firstItem="1TH-qS-PCh" firstAttribute="top" secondItem="0Gt-AY-DZ3" secondAttribute="top" id="2JW-2x-7OQ"/>
                             <constraint firstItem="jeS-jb-IPW" firstAttribute="leading" secondItem="c4l-dS-3UT" secondAttribute="leading" constant="16" id="319-94-aeA"/>
                             <constraint firstItem="LhR-og-cJE" firstAttribute="centerY" secondItem="jeS-jb-IPW" secondAttribute="centerY" id="3Zv-OW-cUn"/>
@@ -463,6 +467,7 @@
                             <constraint firstItem="Om3-SG-P19" firstAttribute="leading" secondItem="0Gt-AY-DZ3" secondAttribute="trailing" constant="15" id="Lug-mw-8K0"/>
                             <constraint firstItem="1TH-qS-PCh" firstAttribute="bottom" secondItem="0Gt-AY-DZ3" secondAttribute="bottom" id="M48-UY-nk4"/>
                             <constraint firstItem="LhR-og-cJE" firstAttribute="top" secondItem="mXn-Xu-eu2" secondAttribute="bottom" constant="17" id="N6k-Km-ZjN"/>
+                            <constraint firstItem="1TH-qS-PCh" firstAttribute="top" secondItem="c4l-dS-3UT" secondAttribute="top" constant="362" id="PXo-dE-75U"/>
                             <constraint firstItem="LhR-og-cJE" firstAttribute="leading" secondItem="Om3-SG-P19" secondAttribute="leading" id="QFs-w7-9RH"/>
                             <constraint firstItem="V7s-zx-Dwa" firstAttribute="top" secondItem="jeS-jb-IPW" secondAttribute="bottom" constant="4" id="Ub9-yM-A94"/>
                             <constraint firstItem="aVt-JN-E1Y" firstAttribute="top" secondItem="guS-S1-AVM" secondAttribute="top" id="Xd8-aC-na6"/>
@@ -1139,6 +1144,6 @@
         <image name="retweet_on" width="19" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="465-5Z-AdU"/>
+        <segue reference="aNr-Vw-HkH"/>
     </inferredMetricsTieBreakers>
 </document>

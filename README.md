@@ -1,7 +1,47 @@
-# lil-twitter
-(ios) A Fun-Sized Twitter Client built in Swift
+
+
+# lil-twitter REDUX
+(ios) Hamburger Menu, ETC.
 
 Time spent: 20 hours
+
+## Twitter
+
+#### Required
+
+### Hamburger menu
+
+- [X] Dragging anywhere in the view should reveal the menu.
+- [X] The menu should include links to your profile, the home timeline, and the mentions view.
+- [X] The menu can look similar to the LinkedIn menu below or feel free to take liberty with the UI.
+
+### Profile page
+
+- [X] Contains the user header view
+- [X] Contains a section with the users basic stats: # tweets, # following, # followers
+
+### Home Timeline
+
+- [-] Tapping on a user image should bring up that user's profile page
+  - Mostly there! - have a bug in my delegate method
+
+#### Optional:
+
+### Profile page
+
+- [ ] Optional: Implement the paging view for the user description.
+- [ ] Optional: As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
+- [ ] Optional: Pulling down the profile page should blur and resize the header image.
+
+### Account switching
+
+- [ ] Long press on tab bar to bring up Account view with animation
+- [ ] Tap account to switch to
+- [ ] Include a plus button to Add an Account
+- [ ] Swipe to delete an account
+
+
+
 
 ### Features
 
@@ -25,8 +65,11 @@ Time spent: 20 hours
 - [ ] Replies should be prefixed with the username and the reply_id should be set when posting the tweet,
 - [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 
-### Walkthrough
+### Walkthroughs
 
+![Alt text](/gif/twitter-hamburger-gif.gif?raw=true "twitter")
 ![Alt text](/gif/twitter-gif.gif?raw=true "twitter")
+
+
 
 GIF created with LiceCap.

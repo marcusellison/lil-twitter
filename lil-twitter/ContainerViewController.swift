@@ -15,7 +15,7 @@ enum SlideOutState {
 }
 
 
-class ContainerViewController: UIViewController, MenuControllerDelegate {
+class ContainerViewController: UIViewController, MenuControllerDelegate, TweetCellDelegate {
     
     private var profileViewController: ProfileViewController!
     private var sidePanelViewController: SidePanelViewController!
@@ -128,7 +128,7 @@ extension ContainerViewController: TweetsViewControllerDelegate {
             animateCenterPanelXPosition(targetPosition: 0) { finished in
                 self.currentState = .BothCollapsed
                 println("\(self.leftViewController)")
-                self.leftViewController!.view.removeFromSuperview()
+//                self.leftViewController!.view.removeFromSuperview()
                 self.leftViewController = nil;
             }
         }
@@ -168,7 +168,7 @@ extension ContainerViewController: TweetsViewControllerDelegate {
     }
     
     func showTimeline() {
-        displayVC(centerViewController) //added instantiation - is this correct?
+        displayVC(centerNavigationController) //added instantiation - is this correct?
         animateLeftPanel(shouldExpand: false)
     }
     
@@ -178,6 +178,10 @@ extension ContainerViewController: TweetsViewControllerDelegate {
         vc.view.frame = view.bounds
         view.addSubview(vc.view)
         vc.didMoveToParentViewController(self)
+    }
+    
+    func userTapped(user: User) {
+        println("code working here")
     }
     
     ///////////The Code of the Code!!!/////////

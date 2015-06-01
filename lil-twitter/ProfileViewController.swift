@@ -20,7 +20,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var numTweetsLabel: UILabel!
     
     @IBOutlet weak private var nameLabel: UILabel!
-//    @IBOutlet weak private var handleLabel: UILabel!
     @IBOutlet weak private var navBar: UINavigationBar!
 
     override func viewDidLoad() {
@@ -42,7 +41,7 @@ class ProfileViewController: UIViewController {
         item.title = "Profile"
         
 //        if !isModal {
-            item.leftBarButtonItem = UIBarButtonItem(title: "Menu", style: UIBarButtonItemStyle.Done, target: self, action: "doneTapped:")
+            item.leftBarButtonItem = UIBarButtonItem(title: "Main", style: UIBarButtonItemStyle.Done, target: self, action: "doneTapped:")
 //        }
 
         // Do any additional setup after loading the view.
@@ -50,9 +49,11 @@ class ProfileViewController: UIViewController {
     
     func doneTapped(sender: UIBarButtonItem) {
         
-        delegate?.toggleLeftPanel()
+        delegate?.showTimeline()
         
-        dismissViewControllerAnimated(true, completion: nil)
+//        performSegueWithIdentifier("newTweet", sender: sender)
+//        
+//        dismissViewControllerAnimated(true, completion: nil)
         
 //        if isModal {
 //            dismissViewControllerAnimated(true, completion: nil)
