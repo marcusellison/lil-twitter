@@ -20,12 +20,20 @@ class User: NSObject {
     var tagline: String?
     var dictionary: NSDictionary?
     
+    var tweetCount: Int!
+    var followersCount: Int!
+    var followingCount: Int!
+    
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
         profileImageURL = dictionary["profile_image_url"] as? String
         tagline = dictionary["description"] as? String
+        
+        tweetCount = dictionary["statuses_count"] as? Int
+        followersCount = dictionary["followers_count"] as? Int
+        followingCount = dictionary["friends_count"] as? Int
     }
     
     func logout() {
@@ -38,6 +46,11 @@ class User: NSObject {
         //
         NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
     
+    }
+    
+    func largeProfileImage() -> String {
+        let s = profileImageURL!.stringByReplacingOccurrencesOfString("_normal", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        return s
     }
     
     class var currentUser: User? {

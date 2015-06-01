@@ -19,28 +19,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        let navigationController = UINavigationController()
-        window?.rootViewController = navigationController
-        
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
-        
-        println("what's happening?")
-        
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
         
         if User.currentUser != nil {
             // Go to the logged in screen
             println("Current user detected: \(User.currentUser?.name)")
             
-            // logged in view created programmatically:
-            var vc = storyBoard.instantiateViewControllerWithIdentifier("TweetsViewController") as! UIViewController
-            window?.rootViewController = UINavigationController(rootViewController: vc)
+            // Force
+//            var vc = storyBoard.instantiateViewControllerWithIdentifier("TweetsViewController") as! UIViewController
+//            window?.rootViewController = UINavigationController(rootViewController: vc)
             
-            println("change to login view")
+            
+            window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            
+            let containerViewController = ContainerViewController()
+            
+            window!.rootViewController = containerViewController
+            window!.makeKeyAndVisible()
         }
         
-        var vc = storyBoard.instantiateInitialViewController() as! UIViewController
-        window?.rootViewController = vc
+        // solution to weird bug happening here
+//        var vc = storyBoard.instantiateInitialViewController() as! UIViewController
+//        window?.rootViewController = vc
         
         return true
     }
