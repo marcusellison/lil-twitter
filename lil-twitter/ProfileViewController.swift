@@ -50,16 +50,7 @@ class ProfileViewController: UIViewController {
     func doneTapped(sender: UIBarButtonItem) {
         
         delegate?.showTimeline()
-        
-//        performSegueWithIdentifier("newTweet", sender: sender)
-//        
-//        dismissViewControllerAnimated(true, completion: nil)
-        
-//        if isModal {
-//            dismissViewControllerAnimated(true, completion: nil)
-//        } else {
-//            delegate?.toggleLeftPanel()
-//        }
+
     }
     
     

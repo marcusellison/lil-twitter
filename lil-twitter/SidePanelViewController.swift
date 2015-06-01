@@ -50,7 +50,6 @@ class SidePanelViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var row = indexPath.row
         
-        println("something happening")
         println(row)
         
         switch row {
@@ -66,8 +65,6 @@ class SidePanelViewController: UIViewController, UITableViewDelegate, UITableVie
         section: Int) -> UIView? {
         let headerCell = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! HeaderCell
         headerCell.backgroundColor = UIColor.cyanColor()
-        
-//        headerCell.titleLabel.text = "text"
         
         return headerCell
     }
